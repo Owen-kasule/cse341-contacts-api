@@ -1,7 +1,12 @@
-const routes = require('express').Router();
+import express from 'express';
+import users from './users.js';
 
-routes.get('/', (req, res) => {res.send('Welcome to the Contacts API!')});
+const routes = express.Router();
 
-routes.use('/users', require('./users'));
+routes.get('/', (req, res) => {
+  res.send('Welcome to the Contacts API!');
+});
 
-module.exports = routes;
+routes.use('/users', users);
+
+export default routes;

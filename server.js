@@ -20,18 +20,13 @@ const uri = process.env.MONGO_URI;
 
 async function connectToMongoDB() {
   try {
-    // Add connection options to handle TLS issues
     const client = new MongoClient(uri, {
-      ssl: true,
       tls: true,
-      tlsAllowInvalidCertificates: false,
-      useNewUrlParser: true,
-      useUnifiedTopology: true
+      tlsAllowInvalidCertificates: false
     });
-    
     await client.connect();
     console.log('Connected to MongoDB');
-    db = client.db('contacts'); // Replace 'contacts' with your actual database name
+    db = client.db('project1'); // Use your actual DB name
     return client;
   } catch (err) {
     console.error('MongoDB connection error:', err);

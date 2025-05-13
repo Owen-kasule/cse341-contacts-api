@@ -1,62 +1,44 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-// Ensure dotenv can find the .env file (may need to adjust path for your project structure)
+// Ensure dotenv can find the .env file
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
-let db;
-
-// Make sure the MongoDB URI exists before trying to connect
 const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri, { tls: true, tlsAllowInvalidCertificates: false });
 
-if (!uri) {
-  console.error('ERROR: Missing MONGO_URI environment variable');
-  process.exit(1);
-}
+let db;
+let usersCollection;
 
-// Setup MongoDB connection
-const client = new MongoClient(uri);
-
-// Connect once at module level
 async function connectToDb() {
-  try {
+  if (!db) {
     await client.connect();
-    db = client.db('contacts'); // Replace 'contacts' with your actual database name
-    console.log('Connected to MongoDB from controller');
-    return db;
-  } catch (error) {
-    console.error('MongoDB connection error in controller:', error);
-    throw error;
+    db = client.db('project1'); // <-- correct DB name
+    usersCollection = db.collection('users'); // <-- correct collection name
   }
 }
 
-// Connect to the database first
-const dbPromise = connectToDb();
-
 export const getAll = async (req, res) => {
   try {
-    // Make sure we're connected before proceeding
-    await dbPromise;
-    const result = await db.collection('contacts').find().toArray();
-    res.send(result);
+    await connectToDb();
+    const users = await usersCollection.find({}).toArray();
+    res.json(users);
   } catch (err) {
-    console.error('Error in getAll:', err);
     res.status(500).json({ message: err.message });
   }
 };
 
 export const getSingle = async (req, res) => {
   try {
-    // Make sure we're connected before proceeding
-    await dbPromise;
-    const result = await db.collection('contacts').findOne({ _id: req.params.id });
-    res.send(result);
+    await connectToDb();
+    const user = await usersCollection.findOne({ _id: new ObjectId(req.params.id) });
+    if (!user) return res.status(404).json({ message: 'Not found' });
+    res.json(user);
   } catch (err) {
-    console.error('Error in getSingle:', err);
     res.status(500).json({ message: err.message });
   }
 };

@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Owen-kasule/cse341-contacts-api#readme",
   "description": "",
   "dependencies": {
-    "debug": "^4.4.0",
+    "debug": "^4.3.4",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongodb": "^6.0.0",
@@ -28,5 +28,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }

@@ -8,4 +8,4 @@ const contactSchema = new mongoose.Schema({
   birthday:      Date
 }, { timestamps: true });
 
-export default mongoose.model('Contact', contactSchema);
+export default mongoose.model('Contact', contactSchema, 'users');

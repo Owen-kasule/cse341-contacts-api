@@ -1,7 +1,11 @@
+//=============================================================================
+// LOCAL TESTING
+//=============================================================================
+
 ### Get all contacts
 GET http://localhost:8080/contacts
 
-### Get contact by ID (replace with your actual ID)
+### Get contact by ID
 GET http://localhost:8080/contacts/6822fa9af9f87ce3459d9212
 
 ### Create new contact
@@ -16,7 +20,7 @@ Content-Type: application/json
   "birthday": "1995-05-20"
 }
 
-### Update contact (replace with your actual ID)
+### Update contact
 PUT http://localhost:8080/contacts/6822fa9af9f87ce3459d9212
 Content-Type: application/json
 
@@ -28,5 +32,43 @@ Content-Type: application/json
   "birthday": "1995-05-20"
 }
 
-### Delete contact (replace with your actual ID)
+### Delete contact
 DELETE http://localhost:8080/contacts/6822fa9af9f87ce3459d9212
+
+
+//=============================================================================
+// RENDER DEPLOYMENT TESTING
+//=============================================================================
+
+### Get all contacts from Render
+GET https://cse341-contacts-api-mofz.onrender.com/contacts
+
+### Get contact by ID from Render
+GET https://cse341-contacts-api-mofz.onrender.com/contacts/6822fa9af9f87ce3459d9212
+
+### Create new contact on Render
+POST https://cse341-contacts-api-mofz.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Remote",
+  "lastName": "User",
+  "email": "remote.user@example.com",
+  "favoriteColor": "orange",
+  "birthday": "1992-12-25"
+}
+
+### Update contact on Render
+PUT https://cse341-contacts-api-mofz.onrender.com/contacts/6822fa9af9f87ce3459d9212
+Content-Type: application/json
+
+{
+  "firstName": "Remote",
+  "lastName": "Updated",
+  "email": "remote.user@example.com",
+  "favoriteColor": "red",
+  "birthday": "1992-12-25"
+}
+
+### Delete contact on Render
+DELETE https://cse341-contacts-api-mofz.onrender.com/contacts/6822fa9af9f87ce3459d9212

@@ -13,11 +13,11 @@ POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Alex",
-  "lastName": "Johnson",
-  "email": "alex.johnson@example.com",
-  "favoriteColor": "purple",
-  "birthday": "1995-05-20"
+  "firstName": "Demo",
+  "lastName": "User",
+  "email": "demo.user.new@example.com",
+  "favoriteColor": "orange",
+  "birthday": "1998-12-25"
 }
 
 ### Update contact
@@ -25,10 +25,10 @@ PUT http://localhost:8080/contacts/6822fa9af9f87ce3459d9212
 Content-Type: application/json
 
 {
-  "firstName": "Alexander",
+  "firstName": "Alex",
   "lastName": "Johnson",
-  "email": "alex.johnson@example.com",
-  "favoriteColor": "blue",
+  "email": "unique_email_123@example.com",
+  "favoriteColor": "purple",
   "birthday": "1995-05-20"
 }
 
@@ -51,9 +51,9 @@ POST https://cse341-contacts-api-mofz.onrender.com/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Remote",
+  "firstName": "Remote3",
   "lastName": "User",
-  "email": "remote.user@example.com",
+  "email": "remote.user3@example.com",
   "favoriteColor": "orange",
   "birthday": "1992-12-25"
 }

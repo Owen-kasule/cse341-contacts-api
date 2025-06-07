@@ -13,11 +13,11 @@ POST http://localhost:8080/contacts
 Content-Type: application/json
 
 {
-  "firstName": "Demo",
+  "firstName": "Owen",
   "lastName": "User",
-  "email": "demo.user.new@example.com",
+  "email": "demo.user7.new@example.com",
   "favoriteColor": "orange",
-  "birthday": "1998-12-25"
+  "birthday": "1998-12-20"
 }
 
 ### Update contact
